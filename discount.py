@@ -46,11 +46,13 @@ ww_data=[]
 session = requests.Session()
 
 # process coles
+print('Loading Coles...', end='\r')
 for i in c_watchlist:
     row = coles(i)
     c_data.append(row)
 
 # process woolworths
+print('Loading Woolworths...', end='\r')
 response = session.get('https://www.woolworths.com.au/', headers={"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"})
 cookie = session.cookies.get_dict()
 bm_key = cookie.get('bm_sz')
