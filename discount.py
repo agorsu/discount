@@ -45,21 +45,22 @@ def woolies(prodID, key):
 c_data=[]
 ww_data=[]
 session = requests.Session()
+console = Console()
 
 # process coles
-print('Loading: Coles', end='\r')
-for i in c_watchlist:
-    row = coles(i)
-    c_data.append(row)
+with console.status('Loading: Coles', spinner='point'):
+    for i in c_watchlist:
+        row = coles(i)
+        c_data.append(row)
 
 # process woolworths
-print('Loading: Woolworths', end='\r')
-response = session.get('https://www.woolworths.com.au/', headers={"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"})
-cookie = session.cookies.get_dict()
-bm_key = cookie.get('bm_sz')
-for i in ww_watchlist:
-    row = woolies(i, bm_key)
-    ww_data.append(row)
+with console.status('Loading: Woolworths', spinner='point'):
+    response = session.get('https://www.woolworths.com.au/', headers={"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"})
+    cookie = session.cookies.get_dict()
+    bm_key = cookie.get('bm_sz')
+    for i in ww_watchlist:
+        row = woolies(i, bm_key)
+        ww_data.append(row)
 
 #rich table
 table = Table(title='Discount Tracker')
