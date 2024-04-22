@@ -79,5 +79,4 @@ for i in range(len(c_data)):
     else:
         table.add_row(c_data[i][2], c_data[i][3], ww_data[i][3])
 
-console = Console()
 console.print(table)
