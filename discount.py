@@ -17,8 +17,16 @@ def coles(prodID):
     headers = {
         "authority": "www.coles.com.au",
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"}
-    response = requests.request("POST", url, json=payload, headers=headers)
-    data = response.json()   
+    try:
+        r = requests.request("POST", url, json=payload, headers=headers)
+    except requests.ConnectionError:
+        print('Unable to connect')
+        exit()
+    except requests.RequestException as e:
+        print(e)
+        exit()
+    
+    data = r.json()   
     brand = data['results'][0]['brand']
     product_name = data['results'][0]['name']
     price = data['results'][0]['pricing']['now']
@@ -29,13 +37,21 @@ def coles(prodID):
         if k == 'promotionType':
             if v:
                 special = True
-    
+
     return ['Coles', special, brand + " " + product_name, "{:.2f}".format(price)]
 
 def woolies(prodID, key):
     headers = {"cookie": 'bm_sz=' + key, "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"}
     url = f"https://www.woolworths.com.au/apis/ui/product/detail/{prodID}"
-    r = session.request("GET", url, headers=headers)
+    try:
+        r = session.request("GET", url, headers=headers)
+    except requests.ConnectionError:
+        print('Unable to connect')
+        exit()
+    except requests.RequestException as e:
+        print(e)
+        exit()
+        
     data = r.json()
     special = data['Product']['InstoreIsOnSpecial']
     desc = data['Product']['DisplayName']
