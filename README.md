@@ -36,11 +36,11 @@ This can be done by the following steps:
    w<span>ww.c</span>oles.com.au/product/arnott's-tim-tam-original-chocolate-biscuits-200g-<strong>329607</strong>
    w<span>ww.w</span>oolworths.com.au/shop/productdetails/<strong>36066</strong>/arnott-s-tim-tam-original-chocolate-biscuits
 
-5. Add the item code to the relevant supermarket watchlist as a string:
+5. Add the item code to the relevant supermarket watchlist:
 
    ```python
-   c_watchlist = ['9043363', '329607']
-   ww_watchlist = ['162609', '36066']
+   c_watchlist = [9043363, 329607]
+   ww_watchlist = [162609, 36066]
    ```
 
    Item codes are compared to their corresponding supermarket watchlist in the same order.
