@@ -33,12 +33,13 @@ def coles(prodID):
     brand = data['results'][0]['brand']
     product_name = data['results'][0]['name']
     price = data['results'][0]['pricing']['now']
+    wasprice = data['results'][0]['pricing']['was']
     
-    # Look for promotionType if exists
+    # Identify specials
     special = False
     for k, v in data['results'][0]['pricing'].items():
         if k == 'promotionType':
-            if v:
+            if v and wasprice != 0:
                 special = True
 
     return ['Coles', special, brand + " " + product_name, "{:.2f}".format(price)]
