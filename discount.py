@@ -1,12 +1,15 @@
 import requests
+import urllib3
 from rich.table import Table
 from rich.console import Console
+
+urllib3.disable_warnings()
 
 # Supermarket discount tracker - terminal version
 
 # Product codes for each supermarket
-c_watchlist = ['9043363', '329607']
-ww_watchlist = ['162609', '36066']
+c_watchlist = [9043363, 329607]
+ww_watchlist = [162609, 36066]
 
 def coles(prodID):
     url = "https://www.coles.com.au/api/products"
@@ -18,7 +21,7 @@ def coles(prodID):
         "authority": "www.coles.com.au",
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"}
     try:
-        r = requests.request("POST", url, json=payload, headers=headers)
+        r = requests.request("POST", url, json=payload, headers=headers, verify=False)
     except requests.ConnectionError:
         print('Unable to connect')
         exit()
