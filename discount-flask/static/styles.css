@@ -1,0 +1,223 @@
+body {
+    font-family: 'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1d21; /* Dark background similar to Slack's dark theme */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    color: #d1d1d1;
+    position: relative;
+}
+
+.banner {
+    width: 100%;
+    background-color: #323537; /* Darker grey background */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    position: fixed;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border-bottom: 1px solid #4a4a4a; /* Subtle border to define banner */
+}
+
+.banner .logo {
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.banner h1 {
+    flex-grow: 1;
+    margin: 0;
+    text-align: left;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+.container {
+    width: 80%;
+    margin: 100px auto 0; /* Adjusted margin to account for banner height */
+    background: #2b2e33; /* Darker grey background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 5px; /* Adds spacing between rows */
+    margin: 0 auto;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: none;
+}
+
+th {
+    background-color: #3a3d41; /* Darker grey */
+    color: #ffffff; /* White text */
+    text-align: left;
+    font-weight: 600;
+    border-radius: 0; /* Reset rounding for all columns by default */
+}
+
+th:first-child {
+    border-top-left-radius: 8px; /* Round only the top-left corner of the first column */
+}
+
+th:last-child {
+    border-top-right-radius: 8px; /* Round only the top-right corner of the last column */
+}
+
+th.align-right, td.align-right {
+    text-align: right;
+}
+
+td {
+    color: #e0e0e0; /* Light grey text */
+    background-color: #2f3237; /* Dark grey for table rows */
+    position: relative;
+}
+
+td:first-child {
+    text-align: left;
+}
+
+.bold-yellow {
+    font-weight: bold;
+    color: #ecb22e; /* Slack's yellow color */
+}
+
+tr:hover td {
+    background-color: #383c41; /* Slightly lighter grey on hover */
+}
+
+.spinner {
+    border: 6px solid #f3f3f300;
+    border-radius: 50%;
+    border-top: 6px solid #3498db;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none; /* Initially hidden */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #2b2e33; /* Match the container background */
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+    color: #d1d1d1; /* Light grey text to match the body */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #d1d1d1; /* Light grey color for the close button */
+    cursor: pointer;
+}
+
+#item-search {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #4a4a4a; /* Darker border to match the theme */
+    border-radius: 4px;
+    background-color: #3a3d41; /* Darker input background */
+    color: #d1d1d1; /* Light grey text */
+}
+
+#search-results {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #4a4a4a; /* Darker border to match the theme */
+    border-radius: 4px;
+    background-color: #2b2e33; /* Match the modal background */
+}
+
+#search-results li {
+    padding: 10px;
+    cursor: pointer;
+    color: #d1d1d1; /* Light grey text */
+}
+
+#search-results li:hover {
+    background-color: #383c41; /* Slightly lighter grey on hover */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 350px) {
+    .container {
+        width: 100%;
+    }
+
+    table, th, td {
+        display: block;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+    }
+
+    th.align-right {
+        text-align: right;
+    }
+
+    th {
+        background-color: #333;
+    }
+}

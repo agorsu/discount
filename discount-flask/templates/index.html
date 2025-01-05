@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="banner">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+        <h1>Discount Tracker</h1>
+    </div>
+    <div class="container">
+        <table id="discount-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th class="align-right">Coles</th>
+                    <th class="align-right">Woolies</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be populated by JavaScript -->
+            </tbody>
+        </table>
+        <div id="spinner" class="spinner"></div>
+    </div>
+    <!-- Floating Add Button -->
+    <div id="add-button" class="floating-button">+</div>
+    <!-- Add Item Modal -->
+    <div id="add-item-modal" class="modal">
+    <div class="modal-content">
+        <span id="close-modal" class="close-button">&times;</span>
+        <h2>Add Item</h2>
+        <label for="item-search">Search for an item:</label>
+        <input type="text" id="item-search" placeholder="Type to search...">
+        <ul id="search-results"></ul>
+    </div>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
